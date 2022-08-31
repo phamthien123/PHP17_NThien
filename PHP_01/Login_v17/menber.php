@@ -2,4 +2,4 @@
 		<button>Quay Về</button>		
 </form>
 <?php
- echo "Xin chào MenBer!";
+ echo "Xin chào MenBer Hieuthu2!";
