@@ -35,13 +35,14 @@
 
     // Output: Service - Company
 
-    $result = "";
     if(!empty($arrMenu)){
-        foreach ($arrMenu  as $key => $value) {
-                if(isset($value['child'])){
-                    echo '<pre>';
-                    print_r($value['child']);
-                    echo '</pre>'; 
+        foreach ($arrMenu  as $key => $value1) {
+                if(isset($value1['child'])){
+                    foreach ($value1['child']  as $key => $value2) {
+                        if(isset($value2['child'])){
+                            echo $value2['name'];
+                      }
+                }
               }
         }
     }

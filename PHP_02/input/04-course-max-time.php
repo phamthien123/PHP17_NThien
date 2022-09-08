@@ -15,4 +15,4 @@ $zend = array(
 $total = max($zend);
 // Key Max:
 $result = array_search($total,$zend);
-echo $result . ' -' .$total;
+echo $result . ' - ' .$total;

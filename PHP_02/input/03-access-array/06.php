@@ -27,3 +27,14 @@
 
     // Yêu cầu: In ra tên của các menu cấp 3
     // Output: Sale - Training - Toyota
+    if(!empty($arrMenu)){
+        foreach ($arrMenu  as $key => $value1) {
+                if(isset($value1['child'])){
+                    foreach ($arrMenu  as $key2 => $value2) {
+                        if(isset($value2['child'])){
+                            echo $value1['name'];
+                      }
+                }
+              }
+        }
+    }
