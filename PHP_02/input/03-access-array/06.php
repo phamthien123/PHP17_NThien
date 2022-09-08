@@ -30,11 +30,15 @@
     if(!empty($arrMenu)){
         foreach ($arrMenu  as $key => $value1) {
                 if(isset($value1['child'])){
-                    foreach ($arrMenu  as $key2 => $value2) {
+                    foreach ($value1['child']  as $key => $value2) {
                         if(isset($value2['child'])){
-                            echo $value1['name'];
+                            foreach ($value2['child']  as $key => $value3) {
+                                if(isset($value3['child'])){
+                                  echo $value3['name'];
+                              }
+                        }
                       }
                 }
-              }
+            }
         }
     }
