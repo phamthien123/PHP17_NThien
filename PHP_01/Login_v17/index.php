@@ -6,6 +6,22 @@
 	require_once "html/head.php";
 	?>
 </head>
+<?php
+$name = isset($_POST['username']) ? $_POST['username'] : null;
+$pass  = isset($_POST['pass']) ? $_POST['pass'] : null;
+$Admin =  ($Name == "admin" && $Pass == "admin");
+$Menber =  ($Name == "thien" && $Pass == "123" || $Name == "thien1" && $Pass == "123");
+$noite = "";
+if (!$Admin && !$Menber && $Name != "" && $Pass != "") {
+	$noite =  "Sai TK or MK";
+} else if ($Admin) {
+	header("Location: admin.php");
+	exit();
+} else if ($Menber) {
+	header("Location: menber.php");
+	exit();
+}
+?>
 
 <body>
 
@@ -16,7 +32,7 @@
 					<span class="login100-form-title p-b-34">
 						Account Login
 					</span>
-
+					<?php echo $noite ?? '' ?>
 					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
 						<input id="first-name" class="input100" type="text" name="username" placeholder="User name">
 						<span class="focus-input100"></span>
@@ -48,22 +64,6 @@
 					</div>
 				</form>
 				<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
-
-				<?php
-				$Name = isset($_POST['username']) ? $_POST['username'] : null;
-				$Pass  = isset($_POST['pass']) ? $_POST['pass'] : null;
-				$Admin =  ($Name == "admin" && $Pass == "admin");
-				$Menber =  ($Name == "thien" && $Pass == "123" || $Name == "thien1" && $Pass == "123");
-
-				if (!$Admin && !$Menber && $Name != "" && $Pass != "") {
-					echo '<script>alert("Sai TK or MK")</script>';
-				} else if ($Admin) {
-					header("Location: admin.php");
-				} else if ($Menber) {
-					header("Location: menber.php");
-				}
-				?>
-				
 			</div>
 		</div>
 	</div>
