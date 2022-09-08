@@ -33,9 +33,9 @@
                     foreach ($value1['child']  as $key => $value2) {
                         if(isset($value2['child'])){
                             foreach ($value2['child']  as $key => $value3) {
-                                if(isset($value3['child'])){
+                               
                                   echo $value3['name'];
-                              }
+                              
                         }
                       }
                 }
