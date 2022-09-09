@@ -4,6 +4,7 @@ $zend = array(
     'zend' => 20,
     'html' => 32,
     'type' => 12,
+    'php2' => 127,
     'javascript' => 80,
 );
 
@@ -14,5 +15,8 @@ $zend = array(
 // Max Time:
 $total = max($zend);
 // Key Max:
-$result = array_search($total,$zend);
-echo $result . ' - ' .$total;
+$result = array_keys($zend,$total);
+foreach($result as $key => $value){
+    echo $value . ' - ' .$total."<br />";
+}
+
