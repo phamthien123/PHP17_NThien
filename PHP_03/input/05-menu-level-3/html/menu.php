@@ -1,6 +1,7 @@
 <?php
 require_once 'data.php';
 $xhtml = "";
+$xhtml1 = "";
 if (count($arrMenu) > 0) {
     foreach ($arrMenu as $keyOne => $valueOne) {
         if (isset($valueOne['child'])) {
@@ -10,20 +11,7 @@ if (count($arrMenu) > 0) {
                         if ($valueThree['name'] != "Toyota") {
                             $xhtml .= '<li><a href="data/sale.php">' . $valueThree['name'] . '</a></li>';
                         }
-                    }
-                }
-            }
-        }
-    }
-}
-$xhtml1 = "";
-if (count($arrMenu) > 0) {
-    foreach ($arrMenu as $keyOne => $valueOne) {
-        if (isset($valueOne['child'])) {
-            foreach ($valueOne['child'] as $keyTow => $valueTow) {
-                if (isset($valueTow['child'])) {
-                    foreach ($valueTow['child'] as $keyThere => $valueThree) {
-                        if ($valueThree['name'] != "Sale" && $valueThree['name'] != "Training") {
+                        else{
                             $xhtml1 .= '<li><a href="data/sale.php">' . $valueThree['name'] . '</a></li>';
                         }
                     }
