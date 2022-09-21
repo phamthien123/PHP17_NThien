@@ -31,7 +31,7 @@ $arrMenu = [
     ]
   
 ];
-$currentMenu =  pathinfo(basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']), PATHINFO_FILENAME);
+$currentMenu =  pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
 ?>
 
 
