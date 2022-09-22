@@ -17,6 +17,7 @@
 			$content	= file_get_contents("./files/$value.txt");
 			$image		= $content[2];
 			@unlink("./files/$value.txt");
+			@unlink("./img/$image");
 		}
 	}
 	?>
