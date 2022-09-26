@@ -9,8 +9,16 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#multy-delete').click(function() {
-				$('#main-form').submit();
-			});
+				$result = "Want to delete?";
+				if ($('#el').is(':checked')) {
+					if (confirm($result)) {
+						$('#main-form').submit();
+					}
+				} else {
+					alert("Please check one checkbox, before delete");
+				}
+
+			})
 		});
 	</script>
 </head>
@@ -22,47 +30,42 @@
 			<form action="multy-delete.php" method="post" name="main-form" id="main-form">
 				<?php
 				require_once 'functions.php';
-
 				$data	= scandir('./files');
-
-				$i = 0;
-				foreach ($data as $key => $value) {
-					if ($value == '.' || $value == '..' || preg_match('#.txt$#imsU', $value) == false) continue;
-					$class		= ($i % 2 == 0) ? 'odd' : 'even';
-					$content	= file_get_contents("./files/$value");
-					$content	= explode('||', $content);
-					$tile				= $content[0];
-					$description		= $content[1];
-					$image				= $content[2];
-					$id			= substr($value, 0, 5);
-					$size		= convertSize(filesize("./files/$value"));
-				?>
-					<div class="row <?php echo $class; ?>">
-						<p class="no">
-							<input type="checkbox" name="checkbox[]" value="<?php echo $id?>">
-						</p>
-						<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
-						<p class="id"><?php echo $id; ?></p>
-						<p class="image"><img src="img/<?php echo $image; ?>" alt=""></p>
-						<p class="size"><?php echo $size; ?></p>
-						<p class="action">
-							<a href="edit.php?id=<?php echo $id; ?>">Edit</a> |
-							<a href="delete.php?id=<?php echo $id; ?>">Delete</a>
-						</p>
-					</div>
-				<?php
-					$i++;
-				}
-				?>
-
-			</form>
-		</div>
-
-		<div id="area-button">
-			<a href="add.php">Add File</a>
-			<a id="multy-delete" href="#">Delete File</a>
-		</div>
-
+					$i = 0;
+						foreach ($data as $key => $value) {
+							if ($value == '.' || $value == '..' || preg_match('#.txt$#imsU', $value) == false) continue;
+							$class		= ($i % 2 == 0) ? 'odd' : 'even';
+							$content	= file_get_contents("./files/$value");
+							$content	= explode('||', $content);
+							$tile				= $content[0];
+							$description		= $content[1];
+							$image				= $content[2];
+							$id			= substr($value, 0, 5);
+							$size		= convertSize(filesize("./files/$value"));
+						?>
+							<div class="row <?php echo $class; ?>">
+								<p class="no">
+									<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
+								</p>
+								<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
+								<p class="id"><?php echo $id; ?></p>
+								<p class="image"><?= showImage("img/$image") ?></p>
+								<p class="size"><?php echo $size; ?></p>
+								<p class="action">
+									<a href="edit.php?id=<?php echo $id; ?>">Edit</a> |
+									<a href="delete.php?id=<?php echo $id; ?>">Delete</a>
+								</p>
+							</div>
+						<?php
+							 $i++;
+						}
+						?>
+					</form>
+				</div>
+				<div id="area-button">
+					<a href="add.php">Add File</a>
+					<a id="multy-delete" href="#">Delete File</a>
+				</div>	
 	</div>
 </body>
 

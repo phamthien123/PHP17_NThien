@@ -61,4 +61,11 @@
 		$result = round($size, $totalDigit) . $ditance . $unit;
 		return $result;
 	}
-?>
+	function showImage($imageName, $page = 'index')
+		{
+			$style = "";
+			if ($page == 'edit') {
+				$style = 'style="width: 350px; height: 350px;"';
+			}
+			return sprintf('<img %s src="%s" alt="" srcset="">', $style, $imageName);
+		}

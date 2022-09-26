@@ -10,14 +10,14 @@
 
 <body>
 	<?php
-	$checkbox	= $_POST['checkbox'];
-	
+	$checkbox	= $_POST['checkbox'];//1 Mảng name = checkbox[];                                  
 	if (!empty($checkbox)) {
 		foreach ($checkbox as $key => $value) {
 			$content	= file_get_contents("./files/$value.txt");
+			$content	= explode('||', $content);
 			$image		= $content[2];
-			@unlink("./files/$value.txt");
 			@unlink("./img/$image");
+			@unlink("./files/$value.txt");
 		}
 	}
 	?>

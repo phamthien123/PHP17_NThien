@@ -36,25 +36,27 @@
 		if (checkLength($description, 10, 5000)) $errorDescription .= '<p class="error">Nội dung dài từ 10 đến 5000 ký tự</p>';
 
 		// Error UpLoad
-		// $errorImg = '';
-		// if(checkEmpty($errorImg)) 			$errorImg = '<p class="error">Chưa Chọn Ảnh </p>';
-		// if(checkSize($fileUpload['size'], 100 * 1024, 5 * 1024 * 1024)) $errorImg .= '<p class="error">Nội dung dài 100 -> 1024</p>';
-		// if(checkExtension($fileUpload['name'], array('jpg','png','mp3','zip'))) $errorImg .= '<p class="error">Nội dung jpg,png,mp3,zip</p>';
-
+		$errorImg = '';
+		$configs = parse_ini_file('config.ini');
+		$flagSize 		= checkSize($fileUpload['size'], $configs['min_size'], $configs['max_size']);
+		$flagExtension 	= checkExtension($fileUpload['name'], explode('|', $configs['extension']));
+		if(!$flagSize) $errorImg = '<p class="error">Dữ liệu phải từ 100mb -> 2KB</p>';
+		if(!$flagExtension) $errorImg = '<p class="error">Dữ liệu file từ là '.str_replace('|',', ',$configs['extension']).'</p>';
 
 
 		// A-Z, a-z, 0-9: AzG09
-		if ($errorTitle == '' && $errorDescription == '') {
-			// $nameImage = randomString(4);
-			$data	= $title . '||' . $description;
+		if ($errorTitle == '' && $errorDescription == ''&& $errorImg == '') {
+			$nameImage = randomString(5).'.'.pathinfo($fileUpload['name'],PATHINFO_EXTENSION);
+			//pathinfo($fileUpload['name'],PATHINFO_EXTENSION): tên + đuôi
+			$data	= $title . '||' . $description. '||' . $nameImage;
+
 			$name = randomString(5);
 			$filename	= './files/' . $name . '.txt';
-			$image  = './img/'.$fileUpload['name'];
 			if (file_put_contents($filename, $data)) {
-				move_uploaded_file($_FILES['file-upload']['tmp_name'], $image);
+				@move_uploaded_file($fileUpload['tmp_name'],'./img/'.$nameImage);
 				$title			= '';
 				$description	= '';
-				$image			= '';
+				$fileUpload		= '';
 				$flag			= true;
 			}
 		}
@@ -78,7 +80,7 @@
 
 				<div class="row">
 					<p>Image</p>
-					<input type="file" name="file-upload" <?php echo @$image; ?>/>
+					<input type="file" name="file-upload" <?php echo @$Testimage?>/>
 					<?php echo @$errorImg ?>
 				</div>
 
