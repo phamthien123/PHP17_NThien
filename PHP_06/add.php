@@ -45,7 +45,7 @@
 
 
 		// A-Z, a-z, 0-9: AzG09
-		if ($errorTitle == '' && $errorDescription == ''&& $errorImg == '') {
+		if ($errorTitle == '' && $errorDescription == ''&& $errorDescription == '') {
 			$nameImage = randomString(5).'.'.pathinfo($fileUpload['name'],PATHINFO_EXTENSION);
 			//pathinfo($fileUpload['name'],PATHINFO_EXTENSION): tên + đuôi
 			$data	= $title . '||' . $description. '||' . $nameImage;

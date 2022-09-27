@@ -30,7 +30,9 @@
 			<form action="multy-delete.php" method="post" name="main-form" id="main-form">
 				<?php
 				require_once 'functions.php';
+
 				$data	= scandir('./files');
+
 				$i = 0;
 				foreach ($data as $key => $value) {
 					if ($value == '.' || $value == '..' || preg_match('#.txt$#imsU', $value) == false) continue;
@@ -45,7 +47,7 @@
 				?>
 					<div class="row <?php echo $class; ?>">
 						<p class="no">
-							<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
+						<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
 						</p>
 						<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
 						<p class="id"><?php echo $id; ?></p>
@@ -73,10 +75,12 @@
 				?>
 			</form>
 		</div>
+
 		<!-- <div id="area-button">
 			<a href="add.php">Add File</a>
 			<a id="multy-delete" href="#">Delete File</a>
 		</div> -->
+
 	</div>
 </body>
 

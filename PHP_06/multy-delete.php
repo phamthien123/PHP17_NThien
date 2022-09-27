@@ -10,7 +10,8 @@
 
 <body>
 	<?php
-	$checkbox	= $_POST['checkbox'];//1 Mảng name = checkbox[];                                  
+	$checkbox	= $_POST['checkbox'];//1 Mảng name = checkbox[];
+	
 	if (!empty($checkbox)) {
 		foreach ($checkbox as $key => $value) {
 			$content	= file_get_contents("./files/$value.txt");

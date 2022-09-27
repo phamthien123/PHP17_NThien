@@ -94,13 +94,12 @@
 				</div>
 				<div class="row">
 					<p>Image New</p>
-					<input type="file" name="file-upload"/><?php echo @$errorImg;?>
+					<input type="file" name="file-upload">
 					<?php echo @$errorImage ?>
 				</div>
 				<div class="row">
 					<p>Old Image</p>
 					<?= showImage("img/$oldImage", 'edit') ?>
-					
 				</div>
 				<div class="row">
 					<input type="submit" value="Save" name="submit">
