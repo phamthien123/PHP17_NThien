@@ -31,41 +31,52 @@
 				<?php
 				require_once 'functions.php';
 				$data	= scandir('./files');
-					$i = 0;
-						foreach ($data as $key => $value) {
-							if ($value == '.' || $value == '..' || preg_match('#.txt$#imsU', $value) == false) continue;
-							$class		= ($i % 2 == 0) ? 'odd' : 'even';
-							$content	= file_get_contents("./files/$value");
-							$content	= explode('||', $content);
-							$tile				= $content[0];
-							$description		= $content[1];
-							$image				= $content[2];
-							$id			= substr($value, 0, 5);
-							$size		= convertSize(filesize("./files/$value"));
-						?>
-							<div class="row <?php echo $class; ?>">
-								<p class="no">
-									<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
-								</p>
-								<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
-								<p class="id"><?php echo $id; ?></p>
-								<p class="image"><?= showImage("img/$image") ?></p>
-								<p class="size"><?php echo $size; ?></p>
-								<p class="action">
-									<a href="edit.php?id=<?php echo $id; ?>">Edit</a> |
-									<a href="delete.php?id=<?php echo $id; ?>">Delete</a>
-								</p>
-							</div>
-						<?php
-							 $i++;
-						}
-						?>
-					</form>
-				</div>
-				<div id="area-button">
-					<a href="add.php">Add File</a>
-					<a id="multy-delete" href="#">Delete File</a>
-				</div>	
+				$i = 0;
+				foreach ($data as $key => $value) {
+					if ($value == '.' || $value == '..' || preg_match('#.txt$#imsU', $value) == false) continue;
+					$class		= ($i % 2 == 0) ? 'odd' : 'even';
+					$content	= file_get_contents("./files/$value");
+					$content	= explode('||', $content);
+					$tile				= $content[0];
+					$description		= $content[1];
+					$image				= $content[2];
+					$id			= substr($value, 0, 5);
+					$size		= convertSize(filesize("./files/$value"));
+				?>
+					<div class="row <?php echo $class; ?>">
+						<p class="no">
+							<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
+						</p>
+						<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
+						<p class="id"><?php echo $id; ?></p>
+						<p class="image"><?= showImage("img/$image") ?></p>
+						<p class="size"><?php echo $size; ?></p>
+						<p class="action">
+							<a href="edit.php?id=<?php echo $id; ?>">Edit</a> |
+							<a href="delete.php?id=<?php echo $id; ?>">Delete</a>
+						</p>
+					</div>
+				<?php
+					$i++;
+				}
+				if ($i == 0) {
+					echo '<div id="area-button">
+									<h3 style="text-align:center">Dữ liệu đang được cập nhật!</h3>
+									<a href="add.php">Add File</a>
+								</div>';
+				} else {
+					echo '<div id="area-button">
+									<a href="add.php">Add File</a>
+									<a id="multy-delete" href="#">Delete File</a>
+								</div>';
+				}
+				?>
+			</form>
+		</div>
+		<!-- <div id="area-button">
+			<a href="add.php">Add File</a>
+			<a id="multy-delete" href="#">Delete File</a>
+		</div> -->
 	</div>
 </body>
 
