@@ -1,0 +1,14 @@
+[
+   {
+       "username": "admin",
+       "password": "e10adc3949ba59abbe56e057f20f883e",
+       "fullname": "Nguyen Van Admin",
+       "role"    : "admin"
+   },
+   {
+       "username": "member",
+       "password": "1f32aa4c9a1d2ea010adcf2348166a04",
+       "fullname": "Nguyen Van Member",
+       "role"    : "member"
+   }
+]

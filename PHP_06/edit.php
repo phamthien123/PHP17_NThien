@@ -54,7 +54,7 @@
 		
 		// A-Z, a-z, 0-9: AzG09
 		if($errorTitle == '' && $errorDescription == '' && $errorImg == ''){
-			if($flagImage = false){
+			if($flagImage == false){
 				$ImageNew = $oldImage;
 			}
 			else{
@@ -64,7 +64,7 @@
 			
 			$filename	= './files/' . $id . '.txt';
 			if(file_put_contents($filename, $data)){
-				if($flagImage = true){
+				if($flagImage == true){
 					@unlink("./img/$oldImage");
 					@move_uploaded_file($fileUpload['tmp_name'],'./img/'.$ImageNew);
 				}

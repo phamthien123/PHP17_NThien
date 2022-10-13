@@ -9,9 +9,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#multy-delete').click(function() {
-				$result = "Want to delete?";
-				if ($('#el').is(':checked')) {
-					if (confirm($result)) {
+				var checked = $('#main-form input:checked').length;
+				if (checked>0) {
+					if (confirm("Want to delete?")) {
 						$('#main-form').submit();
 					}
 				} else {
@@ -47,7 +47,7 @@
 				?>
 					<div class="row <?php echo $class; ?>">
 						<p class="no">
-						<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
+							<input type="checkbox" name="checkbox[]" id="el" value="<?php echo $id ?>">
 						</p>
 						<p class="name"><?php echo $tile; ?><span><?php echo $description; ?></span></p>
 						<p class="id"><?php echo $id; ?></p>
